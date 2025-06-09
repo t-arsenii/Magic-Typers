@@ -1,0 +1,101 @@
+@font-face {
+    font-family: "MedivalSharp";
+    src: url('./static/MedievalSharp-Regular.ttf') format("truetype");
+    font-weight: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "MedivalSharp", sans-serif;
+}
+
+header {
+    height: 100px;
+    background-color: rgb(32, 32, 82);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+h1 {
+    margin: 0;
+}
+
+#main-title {
+    margin: 0px auto;
+    color: white;
+    display: flex;
+    user-select: none;
+}
+
+#user-profile {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+#dots {
+    display: inline-block;
+    width: 2em;
+}
+
+#menu {
+    color: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+#menu ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+#menu li {
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.active {}
+
+#text-area {
+    color: grey;
+    display: flex;
+    width: 400px;
+    flex-wrap: wrap;
+}
+
+#text-area .word {
+    margin-right: 5px;
+}
+
+#text-area.correct {
+    background-color: green;
+}
+
+#text-area.incorrect {
+    background-color: red;
+}
+
+.word {}
+
+.word .error {
+    color: red;
+}
+
+#input-area{
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+}
+
