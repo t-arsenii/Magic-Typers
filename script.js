@@ -8,6 +8,8 @@ const textArea = document.getElementById("text-area");
 const combatText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales nibh nunc, convallis imperdiet libero malesuada et. Sed semper turpis ligula, vitae ultricies neque dapibus vel. Integer sit amet tincidunt mauris. Suspendisse accumsan gravida massa non pellentesque. Cras ut urna risus. Suspendisse enim diam, tristique vel tristique non, dictum sit amet libero. Sed sit amet mollis neque. Donec vel mi auctor, varius nisl in, sagittis nulla. Cras porta congue fringilla. Etiam facilisis massa lorem, ut vestibulum urna porttitor in. In consectetur tellus ac consectetur luctus. Donec ultricies malesuada nunc, sit amet varius urna molestie eget. Quisque accumsan lacus nulla, a ornare nunc iaculis quis. Cras vitae urna quis nisi rutrum accumsan. ";
 
 const CombatTextWords = combatText.split(" ");
+const CombatTextLetters = combatText.split("");
+
 let isFirstWord = true;
 CombatTextWords.forEach((wordText) =>
 {
@@ -32,49 +34,46 @@ CombatTextWords.forEach((wordText) =>
     console.log(wordText);
 })
 
-const inputText = [];
-let index = -1;
 
-const activeWordElement = document.querySelector("#text-area .word.active");
-const letterElements = activeWordElement.querySelectorAll("letter");
-const currentLetter = letterElements.forEach
+const wordElements = document.querySelectorAll("#text-area .word");
 
-inputTrack.addEventListener("keydown", (event) =>
+let currentLetterIndex = 0;
+let currentWordIndex = 0;
+
+document.addEventListener("keydown", (event) =>
 {
-    if (/^[a-zA-Z]$/.test(event.key) || /^[.,!?;:'"-]$/.test(event.key) || event.key === "\u0020")
+    const activeWordElement = document.querySelector("#text-area .word.active");
+    const letterElements = activeWordElement.querySelectorAll("letter");
+
+    if (!(/^[a-zA-Z]$/.test(event.key) || /^[.,!?;:'"-]$/.test(event.key) || event.key === "\u0020" || event.key === "Backspace"))
     {
-        inputText.push(event.key);
-        index++;
+        console.log("Wrong input");
+        return true;
     }
-    else if
-        (event.key == "Backspace")
+
+    if (event.key == "Backspace")
     {
-        if (inputText.length > 0)
+        console.log("backpase hit");
+        if (currentLetterIndex > 0)
         {
-            inputText.pop();
-            index--;
+            currentLetterIndex--;
+            letterElements[currentLetterIndex].classList.remove("correct", "incorrect");
         }
-    }
-    else
-    {
         return;
     }
 
-    if (isCorrectInput(combatText, inputText, index))
+    if (currentLetterIndex === letterElements.length && event.key === "\u0020")
     {
-        document.querySelector("#text-area").className = "correct";
-        console.log("correct");
+        currentLetterIndex = 0;
+        activeWordElement.classList.remove("active");
+        currentWordIndex++;
+        wordElements[currentWordIndex].classList.add("active");
         return;
     }
-    if (index <= -1)
-    {
-        document.querySelector("#text-area").className = "";
-    } else
-    {
-        document.querySelector("#text-area").className = "incorrect";
-    }
 
-    console.log(index);
+    const isCorrect = event.key === letterElements[currentLetterIndex].innerText;
+    currentLetterIndex++;
+    highlightLetter(currentLetterIndex - 1, isCorrect, letterElements);
 })
 
 function isCorrectInput(originalText, currentText, index)
@@ -93,7 +92,6 @@ function isCorrectInput(originalText, currentText, index)
     }
     return false;
 }
-
 menuItems.forEach(item =>
 {
     item.addEventListener("click", (event) =>
@@ -102,4 +100,16 @@ menuItems.forEach(item =>
         main.innerText = option;
     })
 })
+function highlightLetter(index, isCorrect, letterElements)
+{
+    if (!letterElements[index]) return;
+    letterElements[index].classList.remove("correct", "incorrect");
+    if (isCorrect)
+    {
+        letterElements[index].classList.add("correct");
+        return;
+    }
+    letterElements[index].classList.add("incorrect");
+}
+
 animateTytle();

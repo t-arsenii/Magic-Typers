@@ -71,7 +71,12 @@ h1 {
 #text-area {
     color: grey;
     display: flex;
-    width: 400px;
+    position: fixed;      /* or absolute if you want it relative to a parent */
+    left: 0;
+    right: 0;
+    bottom: 5em;
+    width: 70%;
+    margin: 0 auto;
     flex-wrap: wrap;
 }
 
@@ -79,8 +84,11 @@ h1 {
     margin-right: 5px;
 }
 
-#text-area.correct {
+.correct {
     background-color: green;
+}
+.incorrect{
+    background-color: red;
 }
 
 #text-area.incorrect {
