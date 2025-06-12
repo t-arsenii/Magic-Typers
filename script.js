@@ -4,9 +4,6 @@ const main = document.getElementById("main");
 const inputTrack = document.getElementById("input-area")
 const textArea = document.getElementById("text-area");
 
-
-const combatText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales nibh nunc, convallis imperdiet libero malesuada et. Sed semper turpis ligula, vitae ultricies neque dapibus vel. Integer sit amet tincidunt mauris. Suspendisse accumsan gravida massa non pellentesque. Cras ut urna risus. Suspendisse enim diam, tristique vel tristique non, dictum sit amet libero. Sed sit amet mollis neque. Donec vel mi auctor, varius nisl in, sagittis nulla. Cras porta congue fringilla. Etiam facilisis massa lorem, ut vestibulum urna porttitor in. In consectetur tellus ac consectetur luctus. Donec ultricies malesuada nunc, sit amet varius urna molestie eget. Quisque accumsan lacus nulla, a ornare nunc iaculis quis. Cras vitae urna quis nisi rutrum accumsan. ";
-
 const CombatTextWords = combatText.split(" ");
 const CombatTextLetters = combatText.split("");
 
@@ -34,12 +31,10 @@ CombatTextWords.forEach((wordText) =>
     console.log(wordText);
 })
 
-
-const wordElements = document.querySelectorAll("#text-area .word");
-
 let currentLetterIndex = 0;
 let currentWordIndex = 0;
 
+const wordElements = document.querySelectorAll("#text-area .word");
 document.addEventListener("keydown", (event) =>
 {
     const activeWordElement = document.querySelector("#text-area .word.active");
@@ -92,14 +87,6 @@ function isCorrectInput(originalText, currentText, index)
     }
     return false;
 }
-menuItems.forEach(item =>
-{
-    item.addEventListener("click", (event) =>
-    {
-        const option = item.getAttribute("data-option");
-        main.innerText = option;
-    })
-})
 function highlightLetter(index, isCorrect, letterElements)
 {
     if (!letterElements[index]) return;
@@ -111,5 +98,21 @@ function highlightLetter(index, isCorrect, letterElements)
     }
     letterElements[index].classList.add("incorrect");
 }
+menuItems.forEach(item =>
+{
+    item.addEventListener("click", (event) =>
+    {
+        const option = item.getAttribute("data-option");
+        main.innerText = option;
+    })
+})
+const skillSetElement = document.querySelector("#skill-set");
+
+skills.forEach(skillTitle => {
+    const skill = document.createElement("div");
+    skill.innerText = skillTitle;
+    skillSetElement.appendChild(skill)
+})
+
 
 animateTytle();

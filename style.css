@@ -71,10 +71,6 @@ h1 {
 #text-area {
     color: grey;
     display: flex;
-    position: fixed;      /* or absolute if you want it relative to a parent */
-    left: 0;
-    right: 0;
-    bottom: 5em;
     width: 70%;
     margin: 0 auto;
     flex-wrap: wrap;
@@ -87,7 +83,8 @@ h1 {
 .correct {
     background-color: green;
 }
-.incorrect{
+
+.incorrect {
     background-color: red;
 }
 
@@ -101,9 +98,39 @@ h1 {
     color: red;
 }
 
-#input-area{
+#input-area {
     position: absolute;
     bottom: 1em;
     right: 1em;
 }
 
+#Battle-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#Hero-area,
+#Enemy-area {
+    width: 20vw;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#skill-set {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 10vw;
+    padding-bottom: 1em;
+    margin: 0 auto;
+}
+
+#bottom-area {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 5em;
+}
