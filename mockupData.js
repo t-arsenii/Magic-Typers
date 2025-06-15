@@ -10,4 +10,8 @@ const combatText = "Lorem ipsum dolor sit amet, consectetur\
  In consectetur tellus ac consectetur luctus. Donec ultricies malesuada nunc, sit amet varius urna molestie eget.\
  Quisque accumsan lacus nulla, a ornare nunc iaculis quis. Cras vitae urna quis nisi rutrum accumsan.";
 
+const fireballSpell = "Fireball";
+const healSpell = "Heal";
+const shieldSpell = "Shield"
+
 const skills = ["Heal", "Shield", "Fireball"];
