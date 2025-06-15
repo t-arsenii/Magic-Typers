@@ -1,5 +1,9 @@
-renderCombatText(combatText)
-renderSkillSet();
-animateTytle();
-trackKeyPress();
-trackMenuOptions();
+function entry()
+{
+     renderCombatText(combatText);
+     renderSkillSet();
+     animateTytle();
+     trackMenuOptions();
+}
+
+entry();
