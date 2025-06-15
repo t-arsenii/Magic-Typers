@@ -23,50 +23,6 @@ function renderCombatText(combatText)
             wordElement.appendChild(letterElement);
         })
         textArea.appendChild(wordElement);
-
-        console.log(wordText);
-    })
-}
-function trackKeyPress()
-{
-    let currentLetterIndex = 0;
-    let currentWordIndex = 0;
-
-    const wordElements = document.querySelectorAll("#text-area .word");
-    document.addEventListener("keydown", (event) =>
-    {
-        const activeWordElement = document.querySelector("#text-area .word.active");
-        const letterElements = activeWordElement.querySelectorAll("letter");
-
-        if (!(/^[a-zA-Z]$/.test(event.key) || /^[.,!?;:'"-]$/.test(event.key) || event.key === "\u0020" || event.key === "Backspace"))
-        {
-            console.log("Wrong input");
-            return true;
-        }
-
-        if (event.key == "Backspace")
-        {
-            console.log("backpase hit");
-            if (currentLetterIndex > 0)
-            {
-                currentLetterIndex--;
-                letterElements[currentLetterIndex].classList.remove("correct", "incorrect");
-            }
-            return;
-        }
-
-        if (currentLetterIndex === letterElements.length && event.key === "\u0020")
-        {
-            currentLetterIndex = 0;
-            activeWordElement.classList.remove("active");
-            currentWordIndex++;
-            wordElements[currentWordIndex].classList.add("active");
-            return;
-        }
-
-        const isCorrect = event.key === letterElements[currentLetterIndex].innerText;
-        currentLetterIndex++;
-        highlightLetter(currentLetterIndex - 1, isCorrect, letterElements);
     })
 }
 function isCorrectInput(originalText, currentText, index)
